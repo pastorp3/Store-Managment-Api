@@ -9,7 +9,7 @@ module Api
   				@user.email = params[:email]
   				@user.save!
 
-  				render json: { 'user' => @user } , statuscode: :created
+  				render json: UserRepresenter.new(@user).as_json
 
 			end
 

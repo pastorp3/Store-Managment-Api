@@ -3,14 +3,10 @@ module Api
 		class RegistrationController < ApplicationController
 			include BCrypt
 			def create
-				@user = User.new(params[:user])
-				@user.username = params[:username]
-  				@user.password = encrypt_password 
-  				@user.email = params[:email]
-  				@user.save!
-
+				@user_Db = UserDb.create!(name: params[:dbname])
+				@user = User.create!(username: params[:username], password: encrypt(params[:password]), email: params[:email], user_db_id: @user_Db.id)
   				token = AuthenticationTokenService.call
-  				entoken = Token.create!(token: encrypt_token(token),  user_id: @user.id)
+  				entoken = Token.create!(token: encrypt(token),  user_id: @user.id)
  
   				render json: UserRepresenter.new(@user,token).as_json
 
@@ -18,12 +14,8 @@ module Api
 
 			private 
 
-			def encrypt_password
-				BCrypt::Password.create(params[:password])
-			end
-
-			def encrypt_token(token)
-				BCrypt::Password.create(token)
+			def encrypt(item)
+				BCrypt::Password.create(item)
 			end
 
 			def user_params

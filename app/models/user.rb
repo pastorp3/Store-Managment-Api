@@ -5,4 +5,5 @@ class User < ApplicationRecord
 	validates_uniqueness_of :email
 	validates :password, presence: true 
 	belongs_to :user_db
+	
 end

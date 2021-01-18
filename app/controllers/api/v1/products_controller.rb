@@ -4,7 +4,9 @@ module Api
 			before_action :authenticate_token
 
 			def index
-				@products = Product.all
+				
+				@products = Token.user_products(check_token)
+
 
 				render json: ProductsRepresenter.new(@products).as_json
 			end

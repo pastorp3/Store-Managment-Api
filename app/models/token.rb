@@ -3,4 +3,16 @@ class Token < ApplicationRecord
 	has_many :user_dbs, through: :user
 	has_many :products, through: :user_dbs
 	has_many :orders , through: :user_dbs
+
+	def self.user_products token
+		token.products
+	end
+
+	def self.user_orders token
+		token.orders
+	end
+
+	def self.user_dbs token
+		token.user_dbs
+	end
 end

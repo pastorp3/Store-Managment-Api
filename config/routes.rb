@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   		post '/register', to: 'registration#create'
   		get '/products', to: 'products#index'
   		get '/orders', to: 'orders#index'
+  		get '/my-db', to: 'userdbs#index'
   	end
   end
 end

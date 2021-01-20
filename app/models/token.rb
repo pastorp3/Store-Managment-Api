@@ -15,4 +15,8 @@ class Token < ApplicationRecord
 	def self.user_dbs token
 		token.user_dbs
 	end
+
+	def self.get_user_db_id token
+		token.user_dbs.ids.first
+	end
 end

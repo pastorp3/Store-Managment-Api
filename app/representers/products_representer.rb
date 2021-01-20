@@ -6,6 +6,7 @@ class ProductsRepresenter< Api::V1::ProductsController
 	def as_json
 		products.map do |product|
 			{
+				id: product.id,
 				name: product.name,
 				price: product.price,
 				stock: product.stock

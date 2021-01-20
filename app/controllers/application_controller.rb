@@ -17,4 +17,5 @@ class ApplicationController < ActionController::API
 	   		message = 'Invalid token'
             render json: { error:  message }, status: :unauthorized
        end
+
 end

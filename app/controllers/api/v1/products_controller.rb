@@ -26,7 +26,7 @@ module Api
 
 			def update 
 					@product.update!(product_params)
-					render json: ProductRepresenter.new(@product).as_json, status: :updated
+					render json: ProductRepresenter.new(@product).as_json, status: :ok
 			end
 
 			private 

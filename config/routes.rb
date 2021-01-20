@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   		delete '/product/:id', to: 'products#destroy'
   		put '/product/:id', to: 'products#update'
   		patch '/product/:id',to: 'products#update'
-  		get '/orders', to: 'orders#index'
+  		resources :orders , except: [:show,:destroy,:update]
+  		put '/order/:id', to: 'orders#update'
+  		patch '/order/:id', to: 'orders#update'
   		get '/my-db', to: 'userdbs#index'
   	end
   end

@@ -22,9 +22,9 @@ class ApplicationController < ActionController::API
 
        def parameter_missing(e)
     			render json: {error: e.message}, status: :unprocessable_entity
-    		end
+    	end
 
-    		def invalid_id(e)
+    	def invalid_id(e)
     			render json: {error: e.message}, status: :unprocessable_entity
     	end
 end

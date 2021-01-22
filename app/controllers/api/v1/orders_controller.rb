@@ -2,12 +2,16 @@ module Api
 	module V1
 		class OrdersController < ApplicationController
 			before_action :authenticate_token
-			before_action :set_order, only: [:update]
+			before_action :set_order, only: [:update, :show, :destroy]
 			def index
 
 				@orders = Token.user_orders(check_token)
 
-				render json: OrdersRepresenter.new(@orders).as_json
+				render json: OrdersRepresenter.new(@orders).as_json, status: :ok
+			end
+
+			def show
+				render json: OrderRepresenter.new(@order).as_json, status: :ok
 			end
 
 			def create 
@@ -19,6 +23,13 @@ module Api
 		        else
 		          render json: @order.errors, status: :unprocessable_entity
 		        end 
+			end
+
+			def destroy
+				@order.destroy!
+
+				head :no_content
+
 			end
 
 			def update

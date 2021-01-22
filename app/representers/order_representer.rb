@@ -15,7 +15,7 @@ class OrderRepresenter < Api::V1::OrdersController
 			{
 				order_id: order.id,
 				product: product_json(order.product),
-				created: order.created_at
+				created: order.created_at.strftime("%Y-%m-%d")
 			}
 		
 	end

@@ -94,7 +94,7 @@ describe 'Products', type: :request do
 		end
 	end
 
-	describe 'UPDATE product' do
+	describe 'PUT/PATCH product' do
 		let(:user_db) { UserDb.create!(name: 'Testing')}
 		let!(:user) { User.create!(username: 'Pastor', email: 'pastor@email.com', password: '123456', user_db_id: user_db.id)}
 		entoken = AuthenticationTokenService.call

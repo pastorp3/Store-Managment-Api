@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   		put '/product/:id', to: 'products#update'
   		patch '/product/:id',to: 'products#update'
   		resources :orders , except: [:show,:destroy,:update]
+      get '/order/:id', to: 'orders#show'
   		put '/order/:id', to: 'orders#update'
   		patch '/order/:id', to: 'orders#update'
+      delete '/order/:id', to: 'orders#destroy'
   		get '/my-db', to: 'userdbs#index'
   	end
   end

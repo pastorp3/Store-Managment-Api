@@ -3,6 +3,8 @@ class ApplicationController < ActionController::API
 	  include SetToken
 
 	  rescue_from AuthenticationError, with: :handle_unauthenticated
+	  rescue_from ActiveRecord::RecordInvalid, with: :parameter_missing
+	  rescue_from ActiveRecord::RecordNotFound, with: :invalid_id
 	  
 
 	  def authenticate_token
@@ -18,4 +20,11 @@ class ApplicationController < ActionController::API
             render json: { error:  message }, status: :unauthorized
        end
 
+       def parameter_missing(e)
+    			render json: {error: e.message}, status: :unprocessable_entity
+    		end
+
+    		def invalid_id(e)
+    			render json: {error: e.message}, status: :unprocessable_entity
+    	end
 end

@@ -2,10 +2,14 @@ module Api
 	module V1
 		class ProductsController < ApplicationController
 			before_action :authenticate_token
-			before_action :set_product, only: [:destroy, :update]
+			before_action :set_product, only: [:destroy, :update, :show]
 			def index
 				@products = Token.user_products(check_token)
-				render json: ProductsRepresenter.new(@products).as_json
+				render json: ProductsRepresenter.new(@products).as_json, status: :ok
+			end
+
+			def show 
+				 render json: ProductRepresenter.new(@product).as_json, status: :ok
 			end
 
 			def create
@@ -38,6 +42,7 @@ module Api
 			def product_params
 				params.permit(:name,:stock,:price)
 			end
+
 		end
 	end
 end

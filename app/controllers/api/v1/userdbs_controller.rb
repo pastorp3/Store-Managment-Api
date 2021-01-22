@@ -5,7 +5,7 @@ module Api
 			def index
 				@userdbs = Token.user_dbs(check_token)
 
-				render json: UserdbsRepresenter.new(@userdbs).as_json
+				render json: UserdbsRepresenter.new(@userdbs).as_json, status: :ok
 			end
 		end
 	end

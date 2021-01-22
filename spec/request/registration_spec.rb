@@ -1,11 +1,14 @@
 require 'rails_helper'
 
+
 describe 'Registration', type: :request do
 	describe 'POST /register' do
 		it 'Register the user' do 
+			User.delete_all
 			post '/api/v1/register', params: {username: 'Test',email: 'test@test.com',  password: '123456'}
 
 			expect(response).to have_http_status(:created)
+			expect(User.count).to eq(1)
 		end
 
 		it 'Returns error when the password is missing' do

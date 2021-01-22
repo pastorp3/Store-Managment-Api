@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   	namespace :v1 do 
   		post '/register', to: 'registration#create'
   		resources :products , except: [:show,:destroy,:update]
+  		get '/product/:id', to: 'products#show'
   		delete '/product/:id', to: 'products#destroy'
   		put '/product/:id', to: 'products#update'
   		patch '/product/:id',to: 'products#update'

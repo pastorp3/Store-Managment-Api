@@ -7,7 +7,7 @@ module Api
 			def create
 				@user_Db = UserDb.create!(name: params[:dbname])
 				@user = User.create!(username: params[:username], password: encrypt(params[:password]), email: params[:email], user_db_id: @user_Db.id)
-  				token = AuthenticationTokenService.call(@user.id)
+  				token = AuthenticationTokenService.call
   				entoken = Token.create!(token: token,  user_id: @user.id)
  
   				render json: UserRepresenter.new(@user,token).as_json, status: :created
